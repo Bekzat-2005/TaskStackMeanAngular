@@ -10,16 +10,13 @@ import { UserService } from '../../services/user.service';
   templateUrl: './add-user.component.html'
 })
 export class AddUserComponent {
-  userName: string = '';
-
-  constructor(private userService: UserService) { }
-
-  addUser(): void {
+  userName = '';
+  constructor(private service: UserService) {}
+  addUser() {
     if (this.userName.trim()) {
-      this.userService.addUser(this.userName).subscribe(() => {
-        alert('Қолданушы қосылды!');
-        this.userName = '';
-      });
+      this.service.addUser(this.userName).subscribe(() => alert('Қосылды!'));
+      this.userName = '';
     }
   }
 }
+

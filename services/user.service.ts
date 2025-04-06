@@ -1,25 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
-export interface User {
-  id: number;
-  name: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class UserService {
-  private apiUrl = 'http://localhost:3000/users';
+  api = 'http://localhost:3000/users';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.apiUrl);
+  getUsers() {
+    return this.http.get<any[]>(this.api);
   }
 
-  addUser(name: string): Observable<User> {
-    return this.http.post<User>(this.apiUrl, { name });
+  addUser(name: string) {
+    return this.http.post(this.api, { name });
   }
 }
